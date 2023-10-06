@@ -99,3 +99,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   moveSpeed: 10
   sidePadding: 1
+  projectilePrefab: {fileID: 0}
+  projectileSpeed: 30
