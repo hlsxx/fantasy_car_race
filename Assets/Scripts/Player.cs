@@ -21,7 +21,6 @@ public class Player : MonoBehaviour
     void Start()
     {
         SetUpMoveBoundaries();    
-        StartCoroutine(TestCoroutine());
     }
 
     // Update is called once per frame
@@ -33,9 +32,11 @@ public class Player : MonoBehaviour
 
     private void Fire() {
         if (Input.GetButtonDown("Fire1")) {
-            StartCoroutine(FireContinously());
-        } else if (Input.GetButtonUp("Fire1")) {
-            StopCoroutine(firingCoroutine);
+            firingCoroutine = StartCoroutine(FireContinously());
+        } 
+
+        if (Input.GetButtonUp("Fire1")) {
+           StopCoroutine(firingCoroutine);
         }
     }
 
