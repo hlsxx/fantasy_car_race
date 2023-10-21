@@ -8,15 +8,23 @@ public class Enemy : MonoBehaviour
 	[SerializeField] float shotCounter;
 	[SerializeField] float minTimeBetweenShot = 0.2f;
 	[SerializeField] float maxTimeBetweenShot = 3f;
+	[SerializeField] float projectileSpeed = 10f;
+	[SerializeField] GameObject projectile;
 
 	void Start() {
 		shotCounter = Random.Range(minTimeBetweenShot, maxTimeBetweenShot);
 	}
 
-    private void OnTriggerEnter2D(Collider2D other) {
-	    DamageDealer damageDealer = other.gameObject.GetComponent<DamageDealer>();
-		ProcessHit(damageDealer);
-    }
+	void Update() {
+		CountDownAndShoot();
+	}
+
+	private void OnTriggerEnter2D(Collider2D other)
+	{
+		DamageDealer damageDealer = other.gameObject.GetComponent<DamageDealer>();
+			if (!damageDealer) { return; }
+			ProcessHit(damageDealer);
+	}
 
 	private void ProcessHit(DamageDealer damageDealer) {
 		health -= damageDealer.GetDamage();
@@ -26,11 +34,13 @@ public class Enemy : MonoBehaviour
 		}
 	}
 
-	private void CountDownAndShoot() {
+	private void CountDownAndShoot()
+	{
 		shotCounter -= Time.deltaTime;
 
 		if (shotCounter <= 0) {
 			Fire();
+			shotCounter = Random.Range(minTimeBetweenShot, maxTimeBetweenShot);
 		}
 	}
 
