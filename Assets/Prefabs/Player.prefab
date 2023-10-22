@@ -101,7 +101,7 @@ MonoBehaviour:
   moveSpeed: 10
   sidePadding: 1
   health: 200
-  projectilePrefab: {fileID: 0}
+  projectilePrefab: {fileID: 4776534470867832889, guid: 83f463d0561e32b9684f8ab04145f9e3, type: 3}
   projectileSpeed: 30
   projectileFiringPeriod: 0.1
 --- !u!61 &4893040328869101113
