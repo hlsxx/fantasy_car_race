@@ -8,11 +8,15 @@ public class Player : MonoBehaviour
     [SerializeField] float moveSpeed = 10f;
     [SerializeField] float sidePadding = 1f;
     [SerializeField] int health = 200;
+    [SerializeField] AudioClip deathSFX;
+    [SerializeField] [Range(0, 1)] float deathSFXVolume = 0.7f;
 
     [Header("Projectile")]
     [SerializeField] GameObject projectilePrefab;
     [SerializeField] float projectileSpeed = 30f;
     [SerializeField] float projectileFiringPeriod = 0.1f;
+    [SerializeField] AudioClip shootSound;
+    [SerializeField] [Range(0, 1)] float shootSoundVolume = 0.2f;
 
     Coroutine firingCoroutine;
 
@@ -72,6 +76,8 @@ public class Player : MonoBehaviour
         while(true) {
             GameObject projectile = Instantiate(projectilePrefab, transform.position, transform.rotation) as GameObject;
             projectile.GetComponent<Rigidbody2D>().velocity = new Vector2(projectileSpeed, 0);
+
+            AudioSource.PlayClipAtPoint(shootSound, Camera.main.transform.position, shootSoundVolume);
             yield return new WaitForSeconds(projectileFiringPeriod);
         }
     }
@@ -81,13 +87,18 @@ public class Player : MonoBehaviour
         damageDealer.Hit();
 
         if (health <= 0) {
-            Destroy(gameObject);
-        }
+            Die();
+        }     
     }
 
     private void OnTriggerEnter2D(Collider2D other) {
         DamageDealer damageDealer = other.gameObject.GetComponent<DamageDealer>();
         if (!damageDealer) { return; }
         ProcessHit(damageDealer);
+    }
+
+    private void Die() {
+        Destroy(gameObject);
+        AudioSource.PlayClipAtPoint(deathSFX, Camera.main.transform.position, deathSFXVolume);
     }
 }

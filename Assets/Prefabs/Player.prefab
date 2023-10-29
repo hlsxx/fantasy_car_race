@@ -101,9 +101,13 @@ MonoBehaviour:
   moveSpeed: 10
   sidePadding: 1
   health: 200
+  deathSFX: {fileID: 8300000, guid: ff390ef2a3ac7aa248a6e31992a2814b, type: 3}
+  deathSFXVolume: 0.7
   projectilePrefab: {fileID: 4776534470867832889, guid: 83f463d0561e32b9684f8ab04145f9e3, type: 3}
   projectileSpeed: 30
   projectileFiringPeriod: 0.1
+  shootSound: {fileID: 8300000, guid: a698079f7c3327f31acbd048fb57c368, type: 3}
+  shootSoundVolume: 0.08
 --- !u!61 &4893040328869101113
 BoxCollider2D:
   m_ObjectHideFlags: 0
