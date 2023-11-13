@@ -103,7 +103,7 @@ MonoBehaviour:
   health: 200
   deathVFX: {fileID: 1404681256839616, guid: 62deaebaf640e6196bf76ebaccbeb6df, type: 3}
   deathSFX: {fileID: 8300000, guid: ff390ef2a3ac7aa248a6e31992a2814b, type: 3}
-  hitSFX: {fileID: 8300000, guid: ff390ef2a3ac7aa248a6e31992a2814b, type: 3}
+  hitSFX: {fileID: 8300000, guid: 65e776489452f3f2087c6ffad836aadf, type: 3}
   deathSFXVolume: 0.7
   projectilePrefab: {fileID: 4776534470867832889, guid: 83f463d0561e32b9684f8ab04145f9e3, type: 3}
   projectileSpeed: 30
