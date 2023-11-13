@@ -8,7 +8,9 @@ public class Player : MonoBehaviour
     [SerializeField] float moveSpeed = 10f;
     [SerializeField] float sidePadding = 1f;
     [SerializeField] int health = 200;
+    [SerializeField] GameObject deathVFX;
     [SerializeField] AudioClip deathSFX;
+    [SerializeField] AudioClip hitSFX;
     [SerializeField] [Range(0, 1)] float deathSFXVolume = 0.7f;
 
     [Header("Projectile")]
@@ -88,6 +90,8 @@ public class Player : MonoBehaviour
 
         if (health <= 0) {
             Die();
+        } else {
+            AudioSource.PlayClipAtPoint(hitSFX, Camera.main.transform.position, deathSFXVolume);
         }     
     }
 
@@ -98,6 +102,13 @@ public class Player : MonoBehaviour
     }
 
     private void Die() {
+        GameObject explosion = Instantiate(
+            deathVFX, 
+            transform.position, 
+            transform.rotation
+        );
+
+        FindObjectOfType<Level>().LoadGameOver();
         Destroy(gameObject);
         AudioSource.PlayClipAtPoint(deathSFX, Camera.main.transform.position, deathSFXVolume);
     }

@@ -143,7 +143,7 @@ BoxCollider2D:
   m_CallbackLayers:
     serializedVersion: 2
     m_Bits: 4294967295
-  m_IsTrigger: 1
+  m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
@@ -177,7 +177,7 @@ MonoBehaviour:
   maxTimeBetweenShot: 10
   projectileSpeed: 15
   projectile: {fileID: 4506458838889854027, guid: 92ad88eb5ded4b4fda0c0bb5e82ceb4d, type: 3}
-  deathVFX: {fileID: 1404681256839616, guid: 3640199bf9dc32f4da57c37d57581f57, type: 3}
+  deathVFX: {fileID: 1404681256839616, guid: aa394aced541d2a05a275f3dc10c44c5, type: 3}
   durationOfExplosion: 1
   deathSFX: {fileID: 8300000, guid: 520ccf0b726237c9dafef544b198b497, type: 3}
   deathSFXVolume: 0.7
