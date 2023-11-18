@@ -3,13 +3,19 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class Enemy : MonoBehaviour
-{
+{	
+	[Header("Enemy Stats")]
         [SerializeField] float health = 100;
+	[SerializeField] int scoreValue = 100;
+
+	[Header("Shooting")]
 	[SerializeField] float shotCounter;
 	[SerializeField] float minTimeBetweenShot = 0.2f;
 	[SerializeField] float maxTimeBetweenShot = 3f;
 	[SerializeField] float projectileSpeed = 10f;
 	[SerializeField] GameObject projectile;
+
+	[Header("Sound Effects")]
 	[SerializeField] GameObject deathVFX;
 	[SerializeField] float durationOfExplosion = 1f;
 	[SerializeField] AudioClip deathSFX;
@@ -25,8 +31,7 @@ public class Enemy : MonoBehaviour
 		CountDownAndShoot();
 	}
 
-	private void OnTriggerEnter2D(Collider2D other)
-	{
+	private void OnTriggerEnter2D(Collider2D other) {
 		DamageDealer damageDealer = other.gameObject.GetComponent<DamageDealer>();
 		if (!damageDealer) { return; }
 		ProcessHit(damageDealer);
@@ -41,8 +46,7 @@ public class Enemy : MonoBehaviour
 		}
 	}
 
-	private void CountDownAndShoot()
-	{
+	private void CountDownAndShoot() {
 		shotCounter -= Time.deltaTime;
 
 		if (shotCounter <= 0) {
@@ -58,7 +62,9 @@ public class Enemy : MonoBehaviour
 	}
 
 	private void Die() {
+		FindObjectOfType<GameSession>().AddToScore(scoreValue);
 		Destroy(gameObject);
+
 		GameObject explosion = Instantiate(
 			deathVFX, 
 			transform.position, 
