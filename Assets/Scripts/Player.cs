@@ -95,12 +95,6 @@ public class Player : MonoBehaviour
         }     
     }
 
-    private void OnTriggerEnter2D(Collider2D other) {
-        DamageDealer damageDealer = other.gameObject.GetComponent<DamageDealer>();
-        if (!damageDealer) { return; }
-        ProcessHit(damageDealer);
-    }
-
     private void Die() {
         GameObject explosion = Instantiate(
             deathVFX, 
@@ -111,5 +105,42 @@ public class Player : MonoBehaviour
         FindObjectOfType<Level>().LoadGameOver();
         Destroy(gameObject);
         AudioSource.PlayClipAtPoint(deathSFX, Camera.main.transform.position, deathSFXVolume);
+    }
+
+    private void OnTriggerEnter2D(Collider2D other) {
+        if (!other.gameObject.layer.Equals(12)) {
+            DamageDealer damageDealer = other.gameObject.GetComponent<DamageDealer>();
+            if (!damageDealer) { return; }
+            ProcessHit(damageDealer);
+        } else {
+            Bonus bonus = other.gameObject.GetComponent<Bonus>();
+            if (!bonus) { return; }
+            GetBonus(bonus);
+        }
+    }
+
+    private void GetBonus(Bonus bonus) {
+        bonus.playPickupSound();
+
+        switch (bonus.tag) {
+            case "BonusHealth":
+                health += bonus.getHealth();
+            break;
+            case "BonusHealth2":
+                health += bonus.getHealth();
+            break;
+            case "BonusMoveSpeed":
+                moveSpeed += bonus.getSpeed();
+            break;
+            case "BonusElixir":
+                //moveSpeed += bonus.getSpeed();
+            break;
+        }
+
+        bonus.Die();
+    }
+
+    public int GetHealth() {
+        return health;
     }
 }
