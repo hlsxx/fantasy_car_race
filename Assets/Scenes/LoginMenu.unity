@@ -1074,7 +1074,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 4900568792913063739, guid: d8ee52653fcc2b215915a13fa1a4303c, type: 3}
         m_TargetAssemblyTypeName: WebPage, Assembly-CSharp
-        m_MethodName: OpenWebpageURL
+        m_MethodName: Login
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}

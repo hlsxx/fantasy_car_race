@@ -27,14 +27,11 @@ public class Request : MonoBehaviour {
         return url;
     }
 
-    public IEnumerator Post(string page) {
-        string postData = GetUrlWithParams("", parameters).Remove(0, 1);
-        Debug.Log("POST" + postData);
+    public IEnumerator Post(string page, WWWForm form) {
+        //string postData = GetUrlWithParams("", parameters).Remove(0, 1);
+        //Debug.Log("POST" + postData);
 
-        List<IMultipartFormSection> formData = new List<IMultipartFormSection>();
-        formData.Add(new MultipartFormDataSection(postData));
-
-        using (UnityWebRequest webRequest = UnityWebRequest.Post(GetUrl(page), formData)) {
+        using (UnityWebRequest webRequest = UnityWebRequest.Post(GetUrl(page), form)) {
             webRequest.SetRequestHeader("Content-Type", "application/x-www-form-urlencoded");
 
             yield return webRequest.SendWebRequest();

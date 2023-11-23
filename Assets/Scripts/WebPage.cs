@@ -1,15 +1,21 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
+using System.Collections.Generic;
 
 public class WebPage : MonoBehaviour {
     public string url = "https://www.example.com";
 
     private Request request;
+    InputField nicknameInputField;
+    InputField passwordInputField;
 
     private void Start() {
         request = GetComponent<Request>();
-        
+        nicknameInputField = GetComponent<InputField>();
+        passwordInputField = GetComponent<InputField>();
+
         if (request == null) {
             Debug.Log("Request not found");
         }
@@ -27,7 +33,10 @@ public class WebPage : MonoBehaviour {
     }
 
     public void Login() {
-        Debug.Log("xx");
-        StartCoroutine(request.Post("login"));
+        WWWForm form = new WWWForm();
+        form.AddField("nickname", nicknameInputField.text);
+        form.AddField("password", passwordInputField.text);
+
+        StartCoroutine(request.Post("login", form));
     }
 }
