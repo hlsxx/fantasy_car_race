@@ -8,10 +8,18 @@ public class WebPage : MonoBehaviour {
     private Request request;
 
     private void Start() {
-        request = new Request();
-
+        request = GetComponent<Request>();
+        
+        if (request == null) {
+            Debug.Log("Request not found");
+        }
+        //if (request != null) {
+        //    StartCoroutine(request.Get("profile"));
+        //} else {
+        //    Debug.Log("xxx");
+        //}
         //StartCoroutine(request.SendPostRequest("profile"));
-        StartCoroutine(request.Get("profile"));
+        //StartCoroutine(request.Get("profile"));
     }
 
     public void OpenWebpageURL() {
@@ -19,8 +27,7 @@ public class WebPage : MonoBehaviour {
     }
 
     public void Login() {
-        request = new Request();
-
+        Debug.Log("xx");
         StartCoroutine(request.Post("login"));
     }
 }

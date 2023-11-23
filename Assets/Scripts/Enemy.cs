@@ -3,9 +3,9 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class Enemy : MonoBehaviour
-{	
+{
 	[Header("Enemy Stats")]
-        [SerializeField] float health = 100;
+	[SerializeField] float health = 100;
 	[SerializeField] int scoreValue = 100;
 
 	[Header("Shooting")]

@@ -4,7 +4,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 
-public class Request {
+public class Request : MonoBehaviour {
 
     private string serverUrl = "http://localhost/ucm/planet_of_the_aliens/index.php?page=";
     private string postData = "{\"key1\":\"value1\",\"key2\":\"value2\"}";
@@ -28,19 +28,21 @@ public class Request {
     }
 
     public IEnumerator Post(string page) {
-        var postData = GetUrlWithParams("", parameters);
+        string postData = GetUrlWithParams("", parameters).Remove(0, 1);
+        Debug.Log("POST" + postData);
 
-        using (UnityWebRequest webRequest = UnityWebRequest.PostWwwForm(GetUrl(page), postData)) {
+        List<IMultipartFormSection> formData = new List<IMultipartFormSection>();
+        formData.Add(new MultipartFormDataSection(postData));
+
+        using (UnityWebRequest webRequest = UnityWebRequest.Post(GetUrl(page), formData)) {
             webRequest.SetRequestHeader("Content-Type", "application/x-www-form-urlencoded");
 
             yield return webRequest.SendWebRequest();
 
             if (webRequest.result != UnityWebRequest.Result.Success) {
-                Debug.LogError("Error sending POST request: " + webRequest.error);
-                //callback?.Invoke(null);
+                Debug.Log(webRequest.error);
             } else {
-                string response = webRequest.downloadHandler.text;
-                //callback?.Invoke(response);
+                Debug.Log("GET request successful. Response: " + webRequest.downloadHandler.text);
             }
         }
     }
