@@ -17,4 +17,10 @@ public class WebPage : MonoBehaviour {
     public void OpenWebpageURL() {
         Application.OpenURL(url);
     }
+
+    public void Login() {
+        request = new Request();
+
+        StartCoroutine(request.Post("login"));
+    }
 }

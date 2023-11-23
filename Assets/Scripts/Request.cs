@@ -14,7 +14,9 @@ public class Request {
     }
 
     private Dictionary<string, string> parameters = new Dictionary<string, string> {
-        { "idPlayer", "1" }
+        { "idPlayer", "1" },
+        { "nickname", "holes" },
+        { "password", "12345678" }
     };
 
     private string GetUrlWithParams(string url, Dictionary<string, string> parameters) {
@@ -26,8 +28,10 @@ public class Request {
     }
 
     public IEnumerator Post(string page) {
+        var postData = GetUrlWithParams("", parameters);
+
         using (UnityWebRequest webRequest = UnityWebRequest.PostWwwForm(GetUrl(page), postData)) {
-            webRequest.SetRequestHeader("Content-Type", "application/json");
+            webRequest.SetRequestHeader("Content-Type", "application/x-www-form-urlencoded");
 
             yield return webRequest.SendWebRequest();
 
