@@ -1725,6 +1725,8 @@ GameObject:
   - component: {fileID: 5078409819318606016}
   - component: {fileID: 2413051607516478301}
   - component: {fileID: 7336288389049380426}
+  - component: {fileID: 8465678251496224080}
+  - component: {fileID: 8801498339611235268}
   m_Layer: 5
   m_Name: LoginButton
   m_TagString: Untagged
@@ -1892,7 +1894,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 49786473644725564}
+      - m_Target: {fileID: 0}
         m_TargetAssemblyTypeName: WebPage, Assembly-CSharp
         m_MethodName: Login
         m_Mode: 1
@@ -1904,6 +1906,34 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 1
+--- !u!114 &8465678251496224080
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4594879295173562796}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c4afea72afa8a88b4a61bd8d636e86c3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &8801498339611235268
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4594879295173562796}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 576bb999b7071e65a9f34193c2bdb4f1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  url: https://www.example.com
+  request: {fileID: 0}
+  nicknameInputField: {fileID: 0}
+  passwordInputField: {fileID: 0}
 --- !u!1 &5385823220803804896
 GameObject:
   m_ObjectHideFlags: 0
@@ -2050,8 +2080,7 @@ GameObject:
   - component: {fileID: 296879069458192973}
   - component: {fileID: 4772349805140471781}
   - component: {fileID: 3345502470616429815}
-  - component: {fileID: 49786473644725564}
-  - component: {fileID: 8574779796268073455}
+  - component: {fileID: 7866261421423818636}
   m_Layer: 5
   m_Name: LoginMenuCanvas
   m_TagString: Untagged
@@ -2153,7 +2182,7 @@ MonoBehaviour:
   m_BlockingMask:
     serializedVersion: 2
     m_Bits: 4294967295
---- !u!114 &49786473644725564
+--- !u!114 &7866261421423818636
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -2166,18 +2195,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   url: https://www.example.com
---- !u!114 &8574779796268073455
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5853155892979372254}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c4afea72afa8a88b4a61bd8d636e86c3, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
+  request: {fileID: 0}
+  nicknameInputField: {fileID: 5374855419097987924}
+  passwordInputField: {fileID: 3830560453935896879}
 --- !u!1 &5895113284633446462
 GameObject:
   m_ObjectHideFlags: 0
