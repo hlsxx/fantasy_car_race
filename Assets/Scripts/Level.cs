@@ -8,7 +8,7 @@ public class Level : MonoBehaviour
     [SerializeField] float delayInSeconds = 2f;
 
     public void LoadStartMenu() {
-        SceneManager.LoadScene(0);
+        SceneManager.LoadScene(1);
     }
 
     public void LoadGame() {

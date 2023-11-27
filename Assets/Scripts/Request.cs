@@ -9,7 +9,7 @@ public class Request : MonoBehaviour {
     private string serverUrl = "http://localhost/ucm/planet_of_the_aliens/index.php?page=";
     private string postData = "{\"key1\":\"value1\",\"key2\":\"value2\"}";
     
-    private string GetUrl(string page) {
+    public string GetUrl(string page) {
         return serverUrl + page;
     }
 
@@ -27,7 +27,12 @@ public class Request : MonoBehaviour {
         return url;
     }
 
-    public IEnumerator Post(string page, WWWForm form) {
+    public IEnumerator Post(
+        string page,
+        WWWForm form,
+        System.Action<string> successCallback,
+        System.Action<string> errorCallback
+    ) {
         //string postData = GetUrlWithParams("", parameters).Remove(0, 1);
         //Debug.Log("POST" + postData);
 
@@ -37,9 +42,9 @@ public class Request : MonoBehaviour {
             yield return webRequest.SendWebRequest();
 
             if (webRequest.result != UnityWebRequest.Result.Success) {
-                Debug.Log(webRequest.error);
+                errorCallback?.Invoke(webRequest.downloadHandler.text);
             } else {
-                Debug.Log("GET request successful. Response: " + webRequest.downloadHandler.text);
+                successCallback?.Invoke(webRequest.downloadHandler.text);
             }
         }
     }
