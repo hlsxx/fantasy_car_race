@@ -3,32 +3,22 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using System.Collections.Generic;
+using TMPro;
 
-public class WebPage : MonoBehaviour {
+public class WebApi : MonoBehaviour {
     public string url = "https://www.example.com";
 
-    private Request request;
-    InputField nicknameInputField;
-    InputField passwordInputField;
+    [SerializeField] Request request;
+    [SerializeField] TMP_InputField nicknameInputField;
+    [SerializeField] TMP_InputField passwordInputField;
+    [SerializeField] Button loginButton;
 
     private void Start() {
-        request = GetComponent<Request>();
-        nicknameInputField = GetComponent<InputField>();
-        passwordInputField = GetComponent<InputField>();
-
-        if (request == null) {
-            Debug.Log("Request not found");
-        }
-        //if (request != null) {
-        //    StartCoroutine(request.Get("profile"));
-        //} else {
-        //    Debug.Log("xxx");
-        //}
         //StartCoroutine(request.SendPostRequest("profile"));
         //StartCoroutine(request.Get("profile"));
     }
 
-    public void OpenWebpageURL() {
+    private void OpenWebpageURL() {
         Application.OpenURL(url);
     }
 
