@@ -5,11 +5,29 @@ using UnityEngine.UI;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine.SceneManagement;
+using System;
+
+public class ProfileData {
+    //public string id;
+    public string nickname; 
+    //public string password; 
+    //public string id_active_avatar;
+    //public string score;
+    //public string total_kills;
+    //public string total_deaths;
+}
 
 public class LoginResponse {
     public string status;
+
+    #nullable enable
     public string? message;
-    public string? profileData;
+
+    #nullable enable
+    public string? nickname;
+
+    //#nullable enable
+    //public ProfileData profileData;
 }
 
 public class WebApi : MonoBehaviour {
@@ -35,14 +53,22 @@ public class WebApi : MonoBehaviour {
     }
 
     private void LoginSuccessCallback(string res) {
-        LoginResponse loginRes = JsonUtility.FromJson<LoginResponse>(res);
-        
-        //Debug.Log(res);
+        try {
+            LoginResponse loginRes = JsonUtility.FromJson<LoginResponse>(res);
+            if (loginRes.status == "success") {
+                SceneManager.LoadScene("StartMenu");
 
-        if (loginRes.status == "success") {
-            SceneManager.LoadScene("StartMenu");
-        } else {
-            errorText.text = loginRes.message;
+                //Debug.Log(loginRes.profileData);
+                GlobalVariables.InitPlayer(
+                    //loginRes.id,
+                    loginRes.nickname
+                    //loginRes.password
+                );
+            } else {
+                errorText.text = loginRes.message;
+            } 
+        } catch (Exception ex) {
+            Debug.LogError("Error during deserialization: " + ex.Message);
         }
     }
 

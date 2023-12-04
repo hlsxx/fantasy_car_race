@@ -4,6 +4,9 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 
+using MongoDB.Bson;
+using MongoDB.Driver;
+
 public class Request : MonoBehaviour {
 
     private string serverUrl = "http://localhost/ucm/planet_of_the_aliens/index.php?page=";
@@ -64,4 +67,48 @@ public class Request : MonoBehaviour {
             }
         }
     }
+
+    //public void Start() {
+    //    IMongoCollection<BsonDocument> collection;
+    //    MongoClient client = new MongoClient(new MongoUrl("mongodb://localhost"));
+    //    IMongoDatabase db = client.GetDatabase("xxx");
+
+    //    collection = db.GetCollection<BsonDocument>("records");
+    //    //var server = client.GetServer();
+    //
+    //    //Debug.Log("xxx");
+    //    //Debug.Log(collection);
+
+    //   findDocuments(collection);
+
+    //    //IMongoCollection<Model_User> userCollection = db.GetCollection<Model_User>("collectionName");
+    //    //Model_User e = new Model_User();
+    //    //e.name = "hope";
+    //    //userCollection.InsertOne(e);
+    //    //List<Model_User> userModelList = userCollection.Find(user => true).ToList();
+    //    //Model_User[] userAsap= userModelList.ToArray();
+    //    //foreach(Model_User asap in userAsap)
+    //    //{
+    //    //    print(asap.name);
+    //    //}
+    //}
+
+    ////private void InsertDocument() {
+    ////    var document = new BsonDocument {
+    ////        { "key1", "value1" },
+    ////        { "key2", "value2" }
+    ////    };
+
+    ////    collection.InsertOne(document);
+    ////}
+
+    //private void findDocuments(IMongoCollection<BsonDocument> collection) {
+    //    var filter = new BsonDocument();
+    //    var documents = collection.Find(filter).ToList();
+
+    //    foreach (var document in documents)
+    //    {
+    //        Debug.Log(document);
+    //    }
+    //}
 }
