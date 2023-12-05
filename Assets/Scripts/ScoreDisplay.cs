@@ -11,7 +11,6 @@ public class ScoreDisplay : MonoBehaviour {
     void Start() {
         scoreText = GetComponent<TextMeshProUGUI>();
         gameSession = FindObjectOfType<GameSession>();
-        Debug.Log(gameSession.GetScore());
     }
 
     void Update() {

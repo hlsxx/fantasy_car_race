@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using System;
 
 public class GameSession : MonoBehaviour {
     int score = 0;
@@ -9,6 +10,8 @@ public class GameSession : MonoBehaviour {
 
     private void Awake() {
         SetUpSingleton();
+
+        score = int.Parse(GlobalVariables.player.GetScore());
     }
 
     private void SetUpSingleton() {
@@ -34,19 +37,34 @@ public class GameSession : MonoBehaviour {
         Destroy(gameObject);
     }
 
+    private void SaveGameErrorCallback(string res) {
+        Debug.Log(res);
+    }
+
+    private void SaveGameSuccessCallback(string res) {
+        try {
+            Debug.Log(res);
+            GlobalVariables.player.SetScore(GetScore());
+        } catch (Exception ex) {
+            Debug.LogError("Error during deserialization: " + ex.Message);
+        }
+    }
+
     public void SaveGame() {
+        if (request == null) request = gameObject.AddComponent<Request>();
+
         WWWForm form = new WWWForm();
 
         form.AddField("idPlayer", GlobalVariables.player.GetId());
-        form.AddField("score", GlobalVariables.player.GetId());
-        form.AddField("totalKills", GlobalVariables.player.GetId());
-        form.AddField("totalDeaths", GlobalVariables.player.GetId());
+        form.AddField("score", GetScore());
+        form.AddField("totalKills", 1);
+        form.AddField("totalDeaths", 3);
 
-        //StartCoroutine(request.post(
-        //    "profile-update", 
-        //    null, 
-        //    LeaderboardSuccessCallback,
-        //    LeaderboardErrorCallback
-        //));
+        StartCoroutine(request.Post(
+            "profile-update", 
+            form,
+            SaveGameSuccessCallback,
+            SaveGameErrorCallback
+        ));
     }
 }
