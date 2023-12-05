@@ -4,8 +4,9 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 
-using MongoDB.Bson;
-using MongoDB.Driver;
+//using MongoDB.Bson;
+//using MongoDB.Driver;
+//using MongoDB.Bson.Serialization.Attributes;
 
 public class Request : MonoBehaviour {
 
@@ -52,18 +53,23 @@ public class Request : MonoBehaviour {
         }
     }
 
-    public IEnumerator Get(string page) {
-        var url = GetUrlWithParams(GetUrl(page), parameters);
+    public IEnumerator Get(
+        string page,
+        Dictionary<string, string>? parameters,
+        System.Action<string> successCallback,
+        System.Action<string> errorCallback
+    ) {
+        //var url = GetUrlWithParams(GetUrl(page), parameters);
+        var url = GetUrl(page);
 
         using (UnityWebRequest webRequest = UnityWebRequest.Get(url)) {
 
             yield return webRequest.SendWebRequest();
 
             if (webRequest.result != UnityWebRequest.Result.Success) {
-                Debug.LogError("Error sending GET request: " + webRequest.error);
+                errorCallback?.Invoke(webRequest.downloadHandler.text);
             } else {
-                // Request was successful, do something with the response
-                Debug.Log("GET request successful. Response: " + webRequest.downloadHandler.text);
+                successCallback?.Invoke(webRequest.downloadHandler.text);
             }
         }
     }
@@ -71,9 +77,9 @@ public class Request : MonoBehaviour {
     //public void Start() {
     //    IMongoCollection<BsonDocument> collection;
     //    MongoClient client = new MongoClient(new MongoUrl("mongodb://localhost"));
-    //    IMongoDatabase db = client.GetDatabase("xxx");
+    //    IMongoDatabase db = client.GetDatabase("holes");
 
-    //    collection = db.GetCollection<BsonDocument>("records");
+    //    collection = db.GetCollection<BsonDocument>("players");
     //    //var server = client.GetServer();
     //
     //    //Debug.Log("xxx");
@@ -81,7 +87,18 @@ public class Request : MonoBehaviour {
 
     //   findDocuments(collection);
 
-    //    //IMongoCollection<Model_User> userCollection = db.GetCollection<Model_User>("collectionName");
+    //    IMongoCollection<PlayerX> playerCollection = db.GetCollection<PlayerX>("players");
+    //    //var filter = Builders<PlayerX>.Filter.Empty;
+
+    //    List<PlayerX> players = playerCollection.Find(player => true).ToList();
+    //    PlayerX[] playersArray = players.ToArray();
+    //    //var players = playerCollection.Find(filter).ToList();
+
+    //    foreach (var player in playersArray) {
+    //        Debug.Log(player);
+    //    }
+
+
     //    //Model_User e = new Model_User();
     //    //e.name = "hope";
     //    //userCollection.InsertOne(e);

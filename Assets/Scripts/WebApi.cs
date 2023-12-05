@@ -26,6 +26,9 @@ public class LoginResponse {
     #nullable enable
     public string? nickname;
 
+    #nullable enable
+    public int? score;
+
     //#nullable enable
     //public ProfileData profileData;
 }
@@ -60,9 +63,8 @@ public class WebApi : MonoBehaviour {
 
                 //Debug.Log(loginRes.profileData);
                 GlobalVariables.InitPlayer(
-                    //loginRes.id,
-                    loginRes.nickname
-                    //loginRes.password
+                    loginRes.nickname,
+                    loginRes.score ?? 0
                 );
             } else {
                 errorText.text = loginRes.message;

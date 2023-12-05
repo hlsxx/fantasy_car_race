@@ -4,23 +4,26 @@ using UnityEngine;
 
 public struct PlayerGlobal {
 
-    //public int id { get; set; }
-    public string nickname { get; set; }
-    //public string password { get; set; }
+    string nickname;
+    int score;
+    //int totalKills;
+    //int totalDeaths;
 
-    public PlayerGlobal(/*int _id,*/ string _nickname/*, string _password*/) {
-        //id = _id;
+    public PlayerGlobal(string _nickname, int _score) {
         nickname = _nickname;
-        //password = _password;
+        score = _score;
     }
 
     public string GetNickname() => nickname;
+    public string GetScore() => score.ToString();
+    //public int GetTotalKills() => totalKills;
+    //public int GetTotalDeaths() => totalDeaths;
 }
 
 public static class GlobalVariables {
     public static PlayerGlobal player;
 
-    public static void InitPlayer(/*int id,*/ string nickname/*, string password*/) {
-        player = new PlayerGlobal(nickname);
+    public static void InitPlayer(string nickname, int score) {
+        player = new PlayerGlobal(nickname, score);
     }
 }
