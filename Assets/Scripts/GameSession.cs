@@ -67,4 +67,8 @@ public class GameSession : MonoBehaviour {
             SaveGameErrorCallback
         ));
     }
+
+    public void PickAvatar(int avatarIndex) {
+        Debug.Log(avatarIndex);
+    }
 }

@@ -6,7 +6,8 @@ using System.Collections.Generic;
 
 public class Request : MonoBehaviour {
 
-    private string serverUrl = "http://localhost/ucm/planet_of_the_aliens/index.php?page=";
+    //private string serverUrl = "http://localhost/ucm/planet_of_the_aliens/index.php?page=";
+    private string serverUrl = "https://grid3.kaim.fpv.ucm.sk/~patrikholes/planet_of_the_aliens/index.php?page=";
     
     public string GetUrl(string page) {
         return serverUrl + page;
