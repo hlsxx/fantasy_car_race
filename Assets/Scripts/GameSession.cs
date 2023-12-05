@@ -5,6 +5,8 @@ using UnityEngine;
 public class GameSession : MonoBehaviour {
     int score = 0;
 
+    [SerializeField] Request request;
+
     private void Awake() {
         SetUpSingleton();
     }
@@ -30,5 +32,21 @@ public class GameSession : MonoBehaviour {
 
     public void ResetGame() {
         Destroy(gameObject);
+    }
+
+    public void SaveGame() {
+        WWWForm form = new WWWForm();
+
+        form.AddField("idPlayer", GlobalVariables.player.GetId());
+        form.AddField("score", GlobalVariables.player.GetId());
+        form.AddField("totalKills", GlobalVariables.player.GetId());
+        form.AddField("totalDeaths", GlobalVariables.player.GetId());
+
+        //StartCoroutine(request.post(
+        //    "profile-update", 
+        //    null, 
+        //    LeaderboardSuccessCallback,
+        //    LeaderboardErrorCallback
+        //));
     }
 }

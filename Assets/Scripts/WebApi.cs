@@ -6,15 +6,16 @@ using System.Collections.Generic;
 using TMPro;
 using UnityEngine.SceneManagement;
 using System;
+using Newtonsoft.Json;
 
 public class ProfileData {
-    //public string id;
+    public int id;
     public string nickname; 
-    //public string password; 
-    //public string id_active_avatar;
-    //public string score;
-    //public string total_kills;
-    //public string total_deaths;
+    public string password; 
+    public int id_active_avatar;
+    public int score;
+    public int total_kills;
+    public int total_deaths;
 }
 
 public class LoginResponse {
@@ -24,13 +25,7 @@ public class LoginResponse {
     public string? message;
 
     #nullable enable
-    public string? nickname;
-
-    #nullable enable
-    public int? score;
-
-    //#nullable enable
-    //public ProfileData profileData;
+    public ProfileData profileData;
 }
 
 public class WebApi : MonoBehaviour {
@@ -57,15 +52,12 @@ public class WebApi : MonoBehaviour {
 
     private void LoginSuccessCallback(string res) {
         try {
-            LoginResponse loginRes = JsonUtility.FromJson<LoginResponse>(res);
+            LoginResponse loginRes = JsonConvert.DeserializeObject<LoginResponse>(res);
+
             if (loginRes.status == "success") {
                 SceneManager.LoadScene("StartMenu");
 
-                //Debug.Log(loginRes.profileData);
-                GlobalVariables.InitPlayer(
-                    loginRes.nickname,
-                    loginRes.score ?? 0
-                );
+                GlobalVariables.InitPlayer(loginRes.profileData);
             } else {
                 errorText.text = loginRes.message;
             } 
