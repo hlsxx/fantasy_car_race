@@ -31,36 +31,26 @@ public class Leaderboard : MonoBehaviour {
 
     private void LeaderboardSuccessCallback(string res) {
         try {
-            //LeaderboardResponse leaderboardData = JsonUtility.FromJson<LeaderboardResponse>(res);
             LeaderboardResponse leaderboardData = JsonConvert.DeserializeObject<LeaderboardResponse>(res);
 
-        foreach (var player in leaderboardData.players) {
-            //GameObject row = Instantiate(leaderboardRow, leaderboardTable);
-            //Text[] texts = row.GetComponentsInChildren<Text>();
+            int i = 1;
+            foreach (var player in leaderboardData.players) {
+                var item = Instantiate(leaderboardRow);
+                item.GetComponentInChildren<TMP_Text>().text = player.nickname + " | " + player.score;
 
-            //texts[0].text = player.nickname;
-           //Debug.Log(player.nickname);
-           // GameObject playerEntry = new GameObject("PlayerEntry");
-           // playerEntry.transform.SetParent(scrollTable.content);
+                if (i == 1)  {
+                    Image itemImage = item.GetComponent<Image>();
 
-           // Text playerNameText = playerEntry.AddComponent<Text>();
-           // playerNameText.text = player.nickname;
+                    Color itemImageColor = itemImage.color;
+                    itemImageColor.a = 0.2f;
 
-           // playerNameText.transform.localPosition = new Vector2(0, -20);
-           //
-            var item = Instantiate(leaderboardRow);
-            // do something with the instantiated item -- for instance
-            item.GetComponentInChildren<TMP_Text>().text = "Item #" + player.nickname;
-            //Debug.Log(item_go);
-            //item_go.text = player.nickname;
-            //item_go.GetComponent<Image>().color = i % 2 == 0 ? Color.yellow : Color.cyan;
-            //parent the item to the content container
-            item.transform.SetParent(leaderboardTable);
+                    itemImage.color = itemImageColor;
+                }
 
-            //reset the item's scale -- this can get munged with UI prefabs
-            //item_go.transform.localScale = Vector2.one;
-        }
+                item.transform.SetParent(leaderboardTable);
 
+                i += 1;
+            }
         } catch (Exception ex) {
             Debug.LogError("Error during deserialization: " + ex.Message);
         }
