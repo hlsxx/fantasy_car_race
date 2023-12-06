@@ -25,6 +25,7 @@ public struct PlayerGlobal {
     public string GetTotalDeaths() => totalDeaths.ToString();
 
     public void SetScore(int _score) => score = score;
+
 }
 
 public static class GlobalVariables {
