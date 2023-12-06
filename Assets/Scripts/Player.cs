@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class Player : MonoBehaviour
 {
@@ -12,6 +13,9 @@ public class Player : MonoBehaviour
     [SerializeField] AudioClip deathSFX;
     [SerializeField] AudioClip hitSFX;
     [SerializeField] [Range(0, 1)] float deathSFXVolume = 0.7f;
+
+    [SerializeField] Sprite[] avatarsSprites;
+    [SerializeField] SpriteRenderer avatarSpriteRenderer;
 
     [Header("Projectile")]
     [SerializeField] GameObject projectilePrefab;
@@ -27,15 +31,12 @@ public class Player : MonoBehaviour
     float yMin;
     float yMax;
 
-    // Start is called before the first frame update
-    void Start()
-    {
-        SetUpMoveBoundaries();    
+    void Start() {
+        InitAvatar();
+        SetUpMoveBoundaries();
     }
 
-    // Update is called once per frame
-    void Update()
-    {
+    void Update() {
        Move(); 
        Fire();
     }
@@ -142,5 +143,15 @@ public class Player : MonoBehaviour
 
     public int GetHealth() {
         return health;
+    }
+
+    private void InitAvatar() {
+        SpriteRenderer spriteRenderer = GetComponent<SpriteRenderer>();
+
+        if (spriteRenderer != null) {
+            spriteRenderer.sprite = avatarsSprites[GlobalVariables.player.GetIdActiveAvatar() - 1];
+        } else {
+            Debug.LogError("SpriteRenderer error");
+        }
     }
 }

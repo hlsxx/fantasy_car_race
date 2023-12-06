@@ -39,8 +39,10 @@ public class Request : MonoBehaviour {
             yield return webRequest.SendWebRequest();
 
             if (webRequest.result != UnityWebRequest.Result.Success) {
+                Debug.Log("Request Success");
                 errorCallback?.Invoke(webRequest.downloadHandler.text);
             } else {
+                Debug.Log(webRequest.downloadHandler.text);
                 successCallback?.Invoke(webRequest.downloadHandler.text);
             }
         }

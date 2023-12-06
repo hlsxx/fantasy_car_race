@@ -998,6 +998,10 @@ PrefabInstance:
       value: Background
       objectReference: {fileID: 0}
     - target: {fileID: 6842287340970054577, guid: e931a61c9ea673bb1ab66714b5569c67, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 31.02125
+      objectReference: {fileID: 0}
+    - target: {fileID: 6842287340970054577, guid: e931a61c9ea673bb1ab66714b5569c67, type: 3}
       propertyPath: m_LocalPosition.x
       value: 7.8339
       objectReference: {fileID: 0}
@@ -1115,6 +1119,34 @@ PrefabInstance:
       propertyPath: projectilePrefab
       value: 
       objectReference: {fileID: 4776534470867832889, guid: 83f463d0561e32b9684f8ab04145f9e3, type: 3}
+    - target: {fileID: 4639984593815605670, guid: 2ab6272e7a8366560a60a14b9f736435, type: 3}
+      propertyPath: avatars.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4639984593815605670, guid: 2ab6272e7a8366560a60a14b9f736435, type: 3}
+      propertyPath: avatarsSprites.Array.size
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 4639984593815605670, guid: 2ab6272e7a8366560a60a14b9f736435, type: 3}
+      propertyPath: avatarsSprites.Array.data[0]
+      value: 
+      objectReference: {fileID: -2016941586393158055, guid: 156bd29c34bcef43c9f1c4d2127c7a50, type: 3}
+    - target: {fileID: 4639984593815605670, guid: 2ab6272e7a8366560a60a14b9f736435, type: 3}
+      propertyPath: avatarsSprites.Array.data[1]
+      value: 
+      objectReference: {fileID: 21300000, guid: b8fe1a0b37f241bd6af9f59290bceca7, type: 3}
+    - target: {fileID: 4639984593815605670, guid: 2ab6272e7a8366560a60a14b9f736435, type: 3}
+      propertyPath: avatarsSprites.Array.data[2]
+      value: 
+      objectReference: {fileID: 21300000, guid: 361a1fc7e74c84fcf9acd39b8b2a1be0, type: 3}
+    - target: {fileID: 4639984593815605670, guid: 2ab6272e7a8366560a60a14b9f736435, type: 3}
+      propertyPath: avatarsSprites.Array.data[3]
+      value: 
+      objectReference: {fileID: 21300000, guid: c6eaca5cd1e69bfb3a07aca60b860566, type: 3}
+    - target: {fileID: 4639984593815605670, guid: 2ab6272e7a8366560a60a14b9f736435, type: 3}
+      propertyPath: avatarsSprites.Array.data[4]
+      value: 
+      objectReference: {fileID: 21300000, guid: 8d57f26c6822292bf9512eb8bf9f21e6, type: 3}
     - target: {fileID: 5998427350305080123, guid: 2ab6272e7a8366560a60a14b9f736435, type: 3}
       propertyPath: m_Name
       value: Player
