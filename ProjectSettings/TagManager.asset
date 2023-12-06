@@ -8,6 +8,7 @@ TagManager:
   - BonusMove
   - NicknameInputField
   - GameMenuModal
+  - AvatarArea
   layers:
   - Default
   - TransparentFX
