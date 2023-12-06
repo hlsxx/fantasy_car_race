@@ -15,4 +15,12 @@ public class GameModal : MonoBehaviour {
             modal.SetActive(!modal.activeSelf);
         }
     }
+
+    public void ModalClose () {
+        if (modal == null) {
+            modal = GameObject.FindGameObjectWithTag("GameMenuModal");
+        }
+        
+        modal.SetActive(false);
+    }
 }
